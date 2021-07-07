@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    <h3>Kontrol Paneli</h3>
+    <!--Kullanıcı girdiğinde hoşgeldin yazdırılması-->
+    <small>Hoşgeldin,<b>{{session["username"]}}</b></small>
+    <hr>
+    
+    <a href="/addarticle" class="btn btn-success">Makale Ekle</a>
+    <br><br>
+
+    
+    {% if articles %} <!--article gönderilmişse tüm içeriğinin gösterilmesi-->
+    
+        <table class="table table-hover table-dark">
+        <thead>
+            <tr>
+            <th scope="col">id</th>
+            <th scope="col">Başlık</th>
+            <th scope="col">Yazar</th>
+            <th scope="col">Tarih</th>
+            <th scope="col">Güncelle</th>
+            <th scope="col">Sil</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for article in articles %}
+                <tr>
+                    <th scope="row"> {{article.id}} </th>
+                    <td><a href="/article/{{article.id}}"> {{article.title}} </a></td>
+                    <td> {{article.author}} </td>
+                    <td> {{article.created_date}} </td>
+                    <td><a href="/edit/{{article.id}}" class="btn btn-info">Güncelle</a></td>
+                    <td><a href="/delete/{{article.id}}" class="btn btn-warning">Sil</a></td>
+                </tr>
+            {% endfor %}
+
+            <!--
+            <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+            </tr>
+            -->
+        </tbody>
+        </table>
+
+    {% else %}
+        <div class="alert alert-danger">Henüz Bir Makale Yazmamışsınız</div>
+    {% endif %}
+
+{% endblock body %}

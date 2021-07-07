@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block body %} <!--body içini dolduruyoruz-->
+
+    <div class="jumbotron text-center">
+        <h4>Hoş Geldiniz &#128514;</h4>
+        <p>Kendinizi tanıtabilirsiniz.</p>
+    </div>
+
+    {% if islem == 1 %}
+        <p>1. İslem</p>
+    {% elif islem == 2 %}
+        <p>2. İslem</p>
+    {% else %}
+        <p>3 ve Üstü İşlem</p>
+    {% endif %}
+
+    <hr>
+
+    <ul style="color:orange">
+        {% for number in numbers %}
+            <li> {{number}} </li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+
+    <ul>
+        {% for article in articles %}
+            <li><strong style="color:blue">Article Id:</strong> {{article.id}} - 
+                <strong style="color:green">Title:</strong> {{article.title}} - 
+                <strong style="color:red">Content:</strong> {{article.content}}
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock body %}

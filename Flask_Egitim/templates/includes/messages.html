@@ -1,0 +1,16 @@
+<!--includese kısımları yardımcı kısımlar o yüzden onları ayrı klasörde tutuyoruz-->
+<!--Flash mesajlarını göndereceğimiz kısım-->
+
+<!--Bunu includes altına yerleştirdk fakat başka yerlerde kullanmak isteyebiliriz. Yani sadece bir yere dahil edip her yerde kullanacağız o kısımda layout.html olacak-->
+
+{% with messages = get_flashed_messages(with_categories=true) %} <!--with, while benzeri bir şey-->
+  {% if messages %}
+    
+    {% for category, message in messages %}
+      <div class="alert alert-{{category}}" role="alert"> <!--Kategorisi ne ise o olacak o yüzden {{category}} yazdık o belirleyecek-->
+          {{message}}
+      </div>
+    {% endfor %}
+  
+  {% endif %}
+{% endwith %}
